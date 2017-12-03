@@ -1,24 +1,53 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿html {
+    position: relative;
+    min-height: 100%;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+body {
+    /*padding-top: 4.1rem;*/
+    margin-bottom: 125px; /* Margin bottom by footer height */
+    background-color: #F8F9FA;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+#mainnav {
+    padding: 27px 0;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+#page-title {
+    background-color: #c8c10d;
+    color: white;
+}
+
+    #page-title h1 {
+        padding: 28px 0 23px;
+        margin-bottom: 0;
+    }
+
+.fa-icons-white a, .fa-icons-white a:hover {
+    color: white;
+}
+
+.header-image {
+    height: 249px;
+    margin: 0 0 15px 0;
+}
+#header-about-image {
+    background-image: url('images/bg-header-about.jpg');
+}
+
+footer {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, .3);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    background-color: #cb3362;
+}
+
+.fa-footer-icons{
+    margin: 10px 0 10px 0;
+}
+.fa-footer-icons a {
+    margin: 0 7px;
 }

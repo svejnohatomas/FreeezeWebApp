@@ -3,39 +3,78 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>
+        @if (ViewBag.Title != null)
+        {
+            @(ViewBag.Title + " - ")
+        }
+        Frozen Yogurt Shop
+    </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
+    <nav id="mainnav" class="container navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+            <img src="~/Content/images/logo.png" height="36" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    @Html.ActionLink("HOME", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("ABOUT", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                <!-- Menu v template na mobilní verzi absolutně nefunguje => úprava zadání -->
+                <li class="nav-item">
+                    @Html.ActionLink("PRODUCTS", "Index", "Products", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("BLOG", "Index", "Blog", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("CONTACT", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
+                </li>
+            </ul>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    </nav>
+
+    @if (ViewBag.Header != null)
+    {
+        <div id="page-title">
+            <div class="container text-center text-capitalize">
+                <h1>@ViewBag.Header</h1>
+            </div>
+        </div>        
+    }
+
+    @RenderBody()
+    <footer>
+        <div class="container text-center">
+            <div class="row justify-content-center fa-icons-white">
+                <div class="col-12 fa-footer-icons">
+                    <a href="#"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-pinterest-p fa-2x" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <p>&copy; @DateTime.Now.Year Freeeze. All Rights Reserved.</p>
+                </div>
+            </div>            
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/umd/popper.min.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
