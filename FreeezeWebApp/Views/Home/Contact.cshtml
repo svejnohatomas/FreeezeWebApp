@@ -1,20 +1,41 @@
-﻿@{
+﻿@model FreeezeWebApp.Models.Database.Entities.ContactFormResponse
+
+@{
     ViewBag.Title = "Contact";
     ViewBag.Header = ViewBag.Title.ToUpper();
 }
+
+<div id="header-contact-image" class="container-fluid header-image">
+
+</div>
 <div class="container">
-    <h2>@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
+    <div class="row">
+        <article class="col-12 col-sm-9">
+            <h1>INQUIRY FORM</h1>
 
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
-
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
+            @using (Html.BeginForm()) //<!-- <form> ... </form> -->
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <!-- TODO: Generate -->
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", @placeholder = "Subject" } })
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="Message" name="Message" placeholder="Share your thoughts" rows="5"></textarea>
+                    
+                </div>
+                <button type="submit" class="btn btn-primary">SEND</button>
+            }
+        </article>
+        <aside class="col-12 col-sm-3">
+            <h1>WE’D LOVE TO HEAR FROM YOU.</h1>
+            <p>If you're having problems editing this website template, then don't hesitate to ask for help on the Forums.</p>
+        </aside>
+    </div>
 </div>

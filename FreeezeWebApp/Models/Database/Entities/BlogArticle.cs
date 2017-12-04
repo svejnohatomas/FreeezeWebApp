@@ -16,7 +16,7 @@ namespace FreeezeWebApp.Models.Database.Entities
         [DisplayName("Name")]
         public string Name { get; set; }
 
-        [Column("ADDED_ON"), Timestamp, DatabaseGenerated(DatabaseGeneratedOption.Identity), Required]
+        [Column("ADDED_ON"), DatabaseGenerated(DatabaseGeneratedOption.Identity), Required]
         [DisplayName("Added on")]
         public DateTime AddedOn { get; set; }
 

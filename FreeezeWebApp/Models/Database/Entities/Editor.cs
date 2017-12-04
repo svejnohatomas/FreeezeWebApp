@@ -26,7 +26,7 @@ namespace FreeezeWebApp.Models.Database.Entities
 
         [Column("USERNAME"), Required, MaxLength(64)]
         [DisplayName("Username")]
-        public string USERNAME { get; set; }
+        public string Username { get; set; }
 
         [Column("PSWD_HASH"), Required, MaxLength(2048)]
         [DisplayName("Password hash")]
@@ -36,7 +36,7 @@ namespace FreeezeWebApp.Models.Database.Entities
         [DisplayName("Password salt")]
         public string PasswordSalt { get; set; }
 
-        [Column("REGISTERED_ON"), Required, Timestamp]
+        [Column("REGISTERED_ON"), Required]
         [DisplayName("Registered on")]
         public DateTime RegisteredOn { get; set; }
     }

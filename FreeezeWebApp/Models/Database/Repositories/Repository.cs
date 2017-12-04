@@ -17,7 +17,7 @@ namespace FreeezeWebApp.Models.Database.Repositories
 
         internal abstract T Find(object id);
         internal abstract List<T> FindAll();
-        protected abstract void Add(T item, bool saveChanges);
+        public abstract void Add(T item, bool saveChanges);
         internal abstract void Remove(T item, bool saveChanges);
         internal abstract void Update(T item, bool saveChanges);
     }

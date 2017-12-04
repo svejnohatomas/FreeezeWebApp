@@ -13,7 +13,7 @@ namespace FreeezeWebApp.Models.Database.Repositories
 
         }
 
-        protected override void Add(BlogArticle item, bool saveChanges)
+        public override void Add(BlogArticle item, bool saveChanges)
         {
             this._Context.Articles.Add(item);
             if (saveChanges)

@@ -30,11 +30,16 @@ body {
 .header-image {
     height: 249px;
     margin: 0 0 15px 0;
+    background-size: cover;
+    background-position: center;
 }
+
 #header-about-image {
     background-image: url('images/bg-header-about.jpg');
 }
-
+#header-contact-image {
+    background-image: url('images/map.jpg');
+}
 footer {
     padding-top: 1rem;
     border-top: 1px solid rgba(0, 0, 0, .3);
@@ -45,9 +50,10 @@ footer {
     background-color: #cb3362;
 }
 
-.fa-footer-icons{
+.fa-footer-icons {
     margin: 10px 0 10px 0;
 }
-.fa-footer-icons a {
-    margin: 0 7px;
-}
+
+    .fa-footer-icons a {
+        margin: 0 7px;
+    }

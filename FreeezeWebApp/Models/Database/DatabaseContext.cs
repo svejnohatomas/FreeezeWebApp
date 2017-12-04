@@ -1,9 +1,5 @@
 ﻿using FreeezeWebApp.Models.Database.Entities;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 
 namespace FreeezeWebApp.Models.Database
 {
@@ -16,8 +12,8 @@ namespace FreeezeWebApp.Models.Database
 
         #region Properties
         public DbSet<BlogArticle> Articles { get; set; }
+        public DbSet<ContactFormResponse> FormResponses { get; set; }
         public DbSet<Editor> Editors { get; set; }
-        public DbSet<Page> Pages { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductVariant> ProductVariants { get; set; }
         #endregion
