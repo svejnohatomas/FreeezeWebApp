@@ -6,13 +6,13 @@ using System.Web;
 
 namespace FreeezeWebApp.Models.Database.Repositories
 {
-    public class ProductRepository : Repository<Product>
+    public class DBProductRepository : DBRepository<DBProduct>
     {
-        public ProductRepository(DatabaseContext databaseContext) : base(databaseContext)
+        public DBProductRepository(DatabaseContext databaseContext) : base(databaseContext)
         {
         }
 
-        public override void Add(Product item, bool saveChanges)
+        public override void Add(DBProduct item, bool saveChanges)
         {
             this._Context.Products.Add(item);
 
@@ -20,17 +20,17 @@ namespace FreeezeWebApp.Models.Database.Repositories
                 this.SaveChanges();
         }
 
-        internal override Product Find(object id)
+        internal override DBProduct Find(object id)
         {
             return this._Context.Products.Find(id);
         }
 
-        internal override List<Product> FindAll()
+        internal override List<DBProduct> FindAll()
         {
             return this._Context.Products.ToList();
         }
 
-        internal override void Remove(Product item, bool saveChanges)
+        internal override void Remove(DBProduct item, bool saveChanges)
         {
             this._Context.Products.Remove(item);
 
@@ -38,9 +38,9 @@ namespace FreeezeWebApp.Models.Database.Repositories
                 this.SaveChanges();
         }
 
-        internal override void Update(Product item, bool saveChanges)
+        internal override void Update(DBProduct item, bool saveChanges)
         {
-            Product product = this.Find(item.ID);
+            DBProduct product = this.Find(item.ID);
             product.Name = item.Name;
             product.Description = item.Description;
 

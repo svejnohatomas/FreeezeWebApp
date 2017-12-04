@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FreeezeWebApp.Models.Database.Entities
 {
     [Table("fz_tbContactFormResponse")]
-    public class ContactFormResponse
+    public class DBContactFormResponse
     {
         [Column("ID"), Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("ID")]

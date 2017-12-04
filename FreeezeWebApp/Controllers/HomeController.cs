@@ -34,11 +34,11 @@ namespace FreeezeWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Contact(ContactFormResponse response)
+        public ActionResult Contact(DBContactFormResponse response)
         {
             if (this.ModelState.IsValid)
             {
-                ContactFormResponseRepository responseRepository = new ContactFormResponseRepository(this.databaseContext);
+                DBContactFormResponseRepository responseRepository = new DBContactFormResponseRepository(this.databaseContext);
                 responseRepository.Add(response, true);
                 return RedirectToAction("Contact");
             }

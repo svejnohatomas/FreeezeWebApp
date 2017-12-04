@@ -6,13 +6,13 @@ using System.Web;
 
 namespace FreeezeWebApp.Models.Database.Repositories
 {
-    public class EditorRepository : Repository<Editor>
+    public class DBEditorRepository : DBRepository<DBEditor>
     {
-        public EditorRepository(DatabaseContext databaseContext) : base(databaseContext)
+        public DBEditorRepository(DatabaseContext databaseContext) : base(databaseContext)
         {
         }
 
-        public override void Add(Editor item, bool saveChanges)
+        public override void Add(DBEditor item, bool saveChanges)
         {
             this._Context.Editors.Add(item);
 
@@ -20,17 +20,17 @@ namespace FreeezeWebApp.Models.Database.Repositories
                 this.SaveChanges();
         }
 
-        internal override Editor Find(object id)
+        internal override DBEditor Find(object id)
         {
             return this._Context.Editors.Find(id);
         }
 
-        internal override List<Editor> FindAll()
+        internal override List<DBEditor> FindAll()
         {
             return this._Context.Editors.ToList();
         }
 
-        internal override void Remove(Editor item, bool saveChanges)
+        internal override void Remove(DBEditor item, bool saveChanges)
         {
             this._Context.Editors.Remove(item);
 
@@ -38,9 +38,9 @@ namespace FreeezeWebApp.Models.Database.Repositories
                 this.SaveChanges();
         }
 
-        internal override void Update(Editor item, bool saveChanges)
+        internal override void Update(DBEditor item, bool saveChanges)
         {
-            Editor editor = this.Find(item.ID);
+            DBEditor editor = this.Find(item.ID);
             editor.FirstName = item.FirstName;
             editor.MiddleName = item.MiddleName;
             editor.LastName = item.LastName;

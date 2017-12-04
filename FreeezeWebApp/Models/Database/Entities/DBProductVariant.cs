@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FreeezeWebApp.Models.Database.Entities
 {
     [Table("fz_tbProductVariants")]
-    public class ProductVariant
+    public class DBProductVariant
     {
         [Column("ID"), Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("ID")]

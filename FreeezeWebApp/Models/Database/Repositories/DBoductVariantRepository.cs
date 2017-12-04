@@ -6,13 +6,13 @@ using System.Web;
 
 namespace FreeezeWebApp.Models.Database.Repositories
 {
-    public class ProductVariantRepository : Repository<ProductVariant>
+    public class DBoductVariantRepository : DBRepository<DBProductVariant>
     {
-        public ProductVariantRepository(DatabaseContext databaseContext) : base(databaseContext)
+        public DBoductVariantRepository(DatabaseContext databaseContext) : base(databaseContext)
         {
         }
 
-        public override void Add(ProductVariant item, bool saveChanges)
+        public override void Add(DBProductVariant item, bool saveChanges)
         {
             this._Context.ProductVariants.Add(item);
 
@@ -20,17 +20,17 @@ namespace FreeezeWebApp.Models.Database.Repositories
                 this.SaveChanges();
         }
 
-        internal override ProductVariant Find(object id)
+        internal override DBProductVariant Find(object id)
         {
             return this._Context.ProductVariants.Find(id);
         }
 
-        internal override List<ProductVariant> FindAll()
+        internal override List<DBProductVariant> FindAll()
         {
             return this._Context.ProductVariants.ToList();
         }
 
-        internal override void Remove(ProductVariant item, bool saveChanges)
+        internal override void Remove(DBProductVariant item, bool saveChanges)
         {
             this._Context.ProductVariants.Remove(item);
 
@@ -38,9 +38,9 @@ namespace FreeezeWebApp.Models.Database.Repositories
                 this.SaveChanges();
         }
 
-        internal override void Update(ProductVariant item, bool saveChanges)
+        internal override void Update(DBProductVariant item, bool saveChanges)
         {
-            ProductVariant productVariant = this.Find(item.ID);
+            DBProductVariant productVariant = this.Find(item.ID);
             productVariant.IDProduct = item.IDProduct;
             productVariant.Name = item.Name;
             productVariant.ImagePath = item.ImagePath;

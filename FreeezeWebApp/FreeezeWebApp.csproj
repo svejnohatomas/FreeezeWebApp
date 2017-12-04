@@ -163,19 +163,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Application\Entities\AppLogin.cs" />
     <Compile Include="Models\Database\DatabaseContext.cs" />
-    <Compile Include="Models\Database\Entities\BlogArticle.cs" />
-    <Compile Include="Models\Database\Entities\ContactFormResponse.cs" />
-    <Compile Include="Models\Database\Entities\Editor.cs" />
-    <Compile Include="Models\Database\Entities\Product.cs" />
-    <Compile Include="Models\Database\Entities\ProductVariant.cs" />
+    <Compile Include="Models\Database\Entities\DBBlogArticle.cs" />
+    <Compile Include="Models\Database\Entities\DBContactFormResponse.cs" />
+    <Compile Include="Models\Database\Entities\DBEditor.cs" />
+    <Compile Include="Models\Database\Entities\DBLogin.cs" />
+    <Compile Include="Models\Database\Entities\DBProduct.cs" />
+    <Compile Include="Models\Database\Entities\DBProductVariant.cs" />
     <Compile Include="Models\Database\Exceptions\EntityNotFoundException.cs" />
-    <Compile Include="Models\Database\Repositories\BlogArticleRepository.cs" />
-    <Compile Include="Models\Database\Repositories\ContactFormResponseRepository.cs" />
-    <Compile Include="Models\Database\Repositories\EditorRepository.cs" />
-    <Compile Include="Models\Database\Repositories\ProductRepository.cs" />
-    <Compile Include="Models\Database\Repositories\ProductVariantRepository.cs" />
-    <Compile Include="Models\Database\Repositories\Repository.cs" />
+    <Compile Include="Models\Database\Repositories\DBBlogArticleRepository.cs" />
+    <Compile Include="Models\Database\Repositories\DBContactFormResponseRepository.cs" />
+    <Compile Include="Models\Database\Repositories\DBEditorRepository.cs" />
+    <Compile Include="Models\Database\Repositories\DBLoginRepository.cs" />
+    <Compile Include="Models\Database\Repositories\DBProductRepository.cs" />
+    <Compile Include="Models\Database\Repositories\DBoductVariantRepository.cs" />
+    <Compile Include="Models\Database\Repositories\DBRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +216,7 @@
     <Content Include="Content\images\strawberry.jpg" />
     <Content Include="Content\images\strwberry-delights.jpg" />
     <Content Include="Content\images\yogurt.jpg" />
+    <Content Include="Content\Login.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -290,11 +294,11 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Blog\" />
-    <Folder Include="Views\Login\" />
     <Folder Include="Views\Products\" />
   </ItemGroup>
   <ItemGroup>

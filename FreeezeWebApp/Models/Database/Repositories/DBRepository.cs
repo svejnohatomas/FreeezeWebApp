@@ -2,9 +2,9 @@
 
 namespace FreeezeWebApp.Models.Database.Repositories
 {
-    public abstract class Repository<T>
+    public abstract class DBRepository<T>
     {
-        public Repository(DatabaseContext databaseContext)
+        public DBRepository(DatabaseContext databaseContext)
         {
             this._Context = databaseContext;
         }

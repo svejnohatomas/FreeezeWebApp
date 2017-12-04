@@ -6,40 +6,40 @@ using System.Web;
 
 namespace FreeezeWebApp.Models.Database.Repositories
 {
-    public class BlogArticleRepository : Repository<BlogArticle>
+    public class DBBlogArticleRepository : DBRepository<DBBlogArticle>
     {
-        public BlogArticleRepository(DatabaseContext databaseContext) : base(databaseContext)
+        public DBBlogArticleRepository(DatabaseContext databaseContext) : base(databaseContext)
         {
 
         }
 
-        public override void Add(BlogArticle item, bool saveChanges)
+        public override void Add(DBBlogArticle item, bool saveChanges)
         {
             this._Context.Articles.Add(item);
             if (saveChanges)
                 this.SaveChanges();
         }
 
-        internal override BlogArticle Find(object id)
+        internal override DBBlogArticle Find(object id)
         {
             return this._Context.Articles.Find(id);
         }
 
-        internal override List<BlogArticle> FindAll()
+        internal override List<DBBlogArticle> FindAll()
         {
             return this._Context.Articles.ToList();
         }
 
-        internal override void Remove(BlogArticle item, bool saveChanges)
+        internal override void Remove(DBBlogArticle item, bool saveChanges)
         {
             this._Context.Articles.Remove(item);
             if (saveChanges)
                 this.SaveChanges();
         }
 
-        internal override void Update(BlogArticle item, bool saveChanges)
+        internal override void Update(DBBlogArticle item, bool saveChanges)
         {
-            BlogArticle article = this.Find(item.ID);
+            DBBlogArticle article = this.Find(item.ID);
             article.Name = item.Name;
             article.AddedOn = item.AddedOn;
             article.IDEditor = item.IDEditor;

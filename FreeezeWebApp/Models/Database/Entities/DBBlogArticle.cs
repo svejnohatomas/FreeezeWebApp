@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FreeezeWebApp.Models.Database.Entities
 {
     [Table("fz_tbBlogArticle")]
-    public class BlogArticle
+    public class DBBlogArticle
     {
         [Column("ID"), Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("ID")]
@@ -38,6 +38,6 @@ namespace FreeezeWebApp.Models.Database.Entities
 
         [ForeignKey("IDEditor")]
         [DisplayName("Editor")]
-        public virtual Editor Editor { get; set; }
+        public virtual DBEditor Editor { get; set; }
     }
 }

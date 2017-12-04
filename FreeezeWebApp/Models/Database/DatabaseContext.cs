@@ -11,11 +11,12 @@ namespace FreeezeWebApp.Models.Database
         }
 
         #region Properties
-        public DbSet<BlogArticle> Articles { get; set; }
-        public DbSet<ContactFormResponse> FormResponses { get; set; }
-        public DbSet<Editor> Editors { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<ProductVariant> ProductVariants { get; set; }
+        public DbSet<DBBlogArticle> Articles { get; set; }
+        public DbSet<DBContactFormResponse> FormResponses { get; set; }
+        public DbSet<DBEditor> Editors { get; set; }
+        public DbSet<DBLogin> Logins { get; set; }
+        public DbSet<DBProduct> Products { get; set; }
+        public DbSet<DBProductVariant> ProductVariants { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

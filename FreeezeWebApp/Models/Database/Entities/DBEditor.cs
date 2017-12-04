@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FreeezeWebApp.Models.Database.Entities
 {
     [Table("fz_tbEditors")]
-    public class Editor
+    public class DBEditor
     {
         [Column("ID"), Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("ID")]
