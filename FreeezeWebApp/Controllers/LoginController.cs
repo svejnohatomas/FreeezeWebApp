@@ -1,4 +1,5 @@
-﻿using FreeezeWebApp.Models.Database;
+﻿using FreeezeWebApp.Models.Application.Entities;
+using FreeezeWebApp.Models.Database;
 using FreeezeWebApp.Models.Database.Entities;
 using FreeezeWebApp.Models.Database.Repositories;
 using System;
@@ -16,15 +17,16 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            //Request.
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(DBLogin login)
+        public ActionResult Index(AppLogin login)
         {
             if (this.ModelState.IsValid)
             {
+                DBLoginRepository loginRepository = new DBLoginRepository(this.DatabaseContext);
+                //Request
                 //TODO: Check user login
                 throw new NotImplementedException();
             }
