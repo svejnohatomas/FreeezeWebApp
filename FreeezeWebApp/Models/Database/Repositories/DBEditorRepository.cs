@@ -24,6 +24,10 @@ namespace FreeezeWebApp.Models.Database.Repositories
         {
             return this._Context.Editors.Find(id);
         }
+        internal virtual DBEditor Find(string username)
+        {
+            return this._Context.Editors.Where(x => x.Username == username).FirstOrDefault();
+        }
 
         internal override List<DBEditor> FindAll()
         {
