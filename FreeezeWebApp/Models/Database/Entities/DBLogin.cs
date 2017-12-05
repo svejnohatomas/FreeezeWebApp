@@ -20,7 +20,7 @@ namespace FreeezeWebApp.Models.Database.Entities
         [DisplayName("Login time")]
         public DateTime LoginTime { get; set; }
 
-        [Column("LOGOUT_TIME"), Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("LOGOUT_TIME"), Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [DisplayName("Logout time")]
         public DateTime LogoutTime { get; set; }
 

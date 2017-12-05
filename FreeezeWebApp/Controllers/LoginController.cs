@@ -4,9 +4,6 @@ using FreeezeWebApp.Models.Database;
 using FreeezeWebApp.Models.Database.Entities;
 using FreeezeWebApp.Models.Database.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace FreeezeWebApp.Controllers
@@ -18,6 +15,15 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            if (this.Session["authorized"] is DBLogin sessionLogin && sessionLogin.LogoutTime >= DateTime.Now)
+            {
+                DBLoginRepository loginRepository = new DBLoginRepository(this.DatabaseContext);
+                DBLogin login = loginRepository.Find((this.Session["authorized"] as DBLogin).ID);
+                login.LogoutTime = DateTime.Now.AddMinutes(20);
+                loginRepository.Update(login, true);
+                this.Session["authorized"] = login;
+                return RedirectToAction("Index", "Administrator");
+            }
             return View();
         }
 
@@ -31,18 +37,33 @@ namespace FreeezeWebApp.Controllers
 
                 DBEditor editor = editorRepository.Find(login.Username);
 
-                if (editor == null ||
-                    login.Username != editor.Username ||
-                    new PasswordHasher().Hash(login.Password, editor.PasswordSalt) != editor.PasswordHash)
+                if (editor != null || login.Username == editor.Username || PasswordHasher.Hash(login.Password, editor.PasswordSalt) == editor.PasswordHash)
                 {
-                    throw new NotImplementedException("Return user not found exception");
-                } //neexistuje nebo nesedí přihlašovací údaje
-
-                //Request
-                //TODO: Check user login
-                throw new NotImplementedException();
+                    DBLogin dBLogin = new DBLogin() { IDEditor = editor.ID, UserAgent = Request.UserAgent, UserIP = IPObtainer.GetIP() };
+                    loginRepository.Add(dBLogin, true);
+                    this.Session["authorized"] = dBLogin;
+                    return RedirectToAction("Index", "Administrator");
+                }
+                else
+                {
+                    return View(); //neexistuje nebo nesedí přihlašovací údaje
+                }
             }
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            if (this.Session["authorized"] != null)
+            {
+                DBLoginRepository loginRepository = new DBLoginRepository(this.DatabaseContext);
+                DBLogin login = loginRepository.Find((this.Session["authorized"] as DBLogin).ID);
+                login.LogoutTime = DateTime.Now;
+                loginRepository.Update(login, true);
+                this.Session["authorized"] = null;
+            }
+            return View("Index");
         }
     }
 }

@@ -39,11 +39,7 @@ namespace FreeezeWebApp.Models.Database.Repositories
         internal override void Update(DBLogin item, bool saveChanges)
         {
             DBLogin login = this.Find(item.ID);
-            login.IDEditor = item.ID;
-            login.LoginTime = item.LoginTime;
             login.LogoutTime = item.LogoutTime;
-            login.UserAgent = item.UserAgent;
-            login.UserIP = item.UserIP;
 
             if (saveChanges)
                 this.SaveChanges();

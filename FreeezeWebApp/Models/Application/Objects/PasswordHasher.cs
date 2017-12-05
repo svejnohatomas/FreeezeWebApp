@@ -1,15 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace FreeezeWebApp.Models.Application.Objects
 {
-    public class PasswordHasher
+    public static class PasswordHasher
     {
-        public string Hash(string password, string salt)
+        public static string Hash(string password, string salt)
         {
-            throw new NotImplementedException();
+            StringBuilder builder = new StringBuilder(password.Length + salt.Length);
+            builder.Append(password.Substring(0, password.Length / 2));
+            builder.Append(salt);
+            builder.Append(password.Substring(password.Length / 2 + 1));
+
+            return BitConverter.ToString(new SHA512CryptoServiceProvider().ComputeHash(Encoding.Default.GetBytes(builder.ToString()))).Replace("-", String.Empty).ToUpper();
         }
     }
 }
