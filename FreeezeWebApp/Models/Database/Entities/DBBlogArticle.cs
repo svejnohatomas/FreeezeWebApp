@@ -12,32 +12,35 @@ namespace FreeezeWebApp.Models.Database.Entities
         [DisplayName("ID")]
         public int ID { get; set; }
 
-        [Column("NAME"), MaxLength(64), Required]
+        [Column("ARTICLE_NAME"), MaxLength(64), Required]
         [DisplayName("Name")]
         public string Name { get; set; }
 
-        [Column("ADDED_ON"), DatabaseGenerated(DatabaseGeneratedOption.Identity), Required]
+        [Column("ARTICLE_ADDED_ON_UTC"), DatabaseGenerated(DatabaseGeneratedOption.Identity), Required]
         [DisplayName("Added on")]
-        public DateTime AddedOn { get; set; }
+        public DateTime UTCAddedOn { get; set; }
 
         [Column("IDfz_tbEditors"), Required]
         [DisplayName("Editor ID")]
         public int IDEditor { get; set; }
 
-        [Column("TEASER"), MaxLength(1024), Required]
+        [Column("ARTICLE_TEASER"), MaxLength(1024), Required]
         [DisplayName("Teaser")]
         public string Teaser { get; set; }
 
-        [Column("CONTENT"), Required]
+        [Column("ARTICLE_CONTENT"), Required]
         [DisplayName("Content")]
         public string Content { get; set; }
 
-        [Column("IMAGE_PATH"), MaxLength(2048), Required]
+        [Column("ARTICLE_IMAGE_PATH"), MaxLength(2048), Required]
         [DisplayName("Image path")]
         public string ImagePath { get; set; }
 
+        [Column("ARTICLE_IMAGE_ALT"), MaxLength(256), Required]
+        [DisplayName("Image alternative text")]
+        public string ImageAlt { get; set; }
+
         [ForeignKey("IDEditor")]
-        [DisplayName("Editor")]
         public virtual DBEditor Editor { get; set; }
     }
 }

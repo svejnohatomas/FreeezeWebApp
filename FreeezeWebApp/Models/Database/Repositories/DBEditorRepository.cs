@@ -51,7 +51,7 @@ namespace FreeezeWebApp.Models.Database.Repositories
             editor.Username = item.Username;
             editor.PasswordHash = item.PasswordHash;
             editor.PasswordSalt = item.PasswordSalt;
-            editor.RegisteredOn = item.RegisteredOn;
+            editor.UTCRegisteredOn = item.UTCRegisteredOn;
 
             if (saveChanges)
                 this.SaveChanges();

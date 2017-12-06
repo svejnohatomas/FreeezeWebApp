@@ -12,24 +12,24 @@ namespace FreeezeWebApp.Models.Database.Entities
         [DisplayName("ID")]
         public int ID { get; set; }
 
-        [Column("NAME"), MaxLength(32), Required]
+        [Column("RESPONSE_NAME"), MaxLength(32), Required]
         [DisplayName("Name")]
         public string Name { get; set; }
 
-        [Column("EMAIL"), MaxLength(512), Required]
+        [Column("RESPONSE_EMAIL"), MaxLength(512), Required]
         [DisplayName("Email")]
         public string Email { get; set; }
 
-        [Column("SUBJECT"), MaxLength(64), Required]
+        [Column("RESPONSE_SUBJECT"), MaxLength(64), Required]
         [DisplayName("Subject")]
         public string Subject { get; set; }
 
-        [Column("MESSAGE"), Required]
+        [Column("RESPONSE_MESSAGE"), Required]
         [DisplayName("Message")]
         public string Message { get; set; }
 
-        [Column("ADDED_ON"), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("RESPONSE_ADDED_ON_UTC"), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("Added on")]
-        public DateTime AddedOn { get; set; }
+        public DateTime UTCAddedOn { get; set; }
     }
 }

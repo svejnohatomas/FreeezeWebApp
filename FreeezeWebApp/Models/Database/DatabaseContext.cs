@@ -5,9 +5,10 @@ namespace FreeezeWebApp.Models.Database
 {
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext() : base("name=MySQL")
+        public DatabaseContext() : base("name=MSSQL")
         {
-            this.Configuration.ProxyCreationEnabled = false;
+            //this.Configuration.ProxyCreationEnabled = false;
+            //this.Configuration.LazyLoadingEnabled = true;
         }
 
         #region Properties
@@ -24,6 +25,21 @@ namespace FreeezeWebApp.Models.Database
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.PluralizingTableNameConvention>();
+
+            modelBuilder.Entity<DBBlogArticle>()
+                .HasRequired(a => a.Editor)
+                .WithMany(e => e.Articles)
+                .HasForeignKey(a => a.IDEditor);
+
+            modelBuilder.Entity<DBLogin>()
+                .HasRequired(l => l.Editor)
+                .WithMany(e => e.Logins)
+                .HasForeignKey(l => l.IDEditor);
+
+            modelBuilder.Entity<DBProductVariant>()
+                .HasRequired(v => v.Product)
+                .WithMany(p => p.Variants)
+                .HasForeignKey(v => v.IDProduct);
         }
     }
 }

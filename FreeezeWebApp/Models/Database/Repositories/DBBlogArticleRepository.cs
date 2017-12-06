@@ -29,6 +29,10 @@ namespace FreeezeWebApp.Models.Database.Repositories
         {
             return this._Context.Articles.ToList();
         }
+        internal virtual DBBlogArticle FindLast()
+        {
+            return this._Context.Articles.OrderByDescending(x => x.UTCAddedOn).FirstOrDefault();
+        }
 
         internal override void Remove(DBBlogArticle item, bool saveChanges)
         {
@@ -41,13 +45,11 @@ namespace FreeezeWebApp.Models.Database.Repositories
         {
             DBBlogArticle article = this.Find(item.ID);
             article.Name = item.Name;
-            article.AddedOn = item.AddedOn;
+            article.UTCAddedOn = item.UTCAddedOn;
             article.IDEditor = item.IDEditor;
             article.Teaser = item.Teaser;
             article.Content = item.Content;
             article.ImagePath = item.ImagePath;
-
-            article.Editor = item.Editor;
 
             if (saveChanges)
                 this.SaveChanges();

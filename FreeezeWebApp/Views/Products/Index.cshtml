@@ -1,0 +1,25 @@
+﻿@model FreeezeWebApp.Models.Database.Entities.DBProduct
+
+<div class="container pb-3">
+    @{
+        foreach (var item in this.ViewBag.Products)
+        {
+            <div class="row">
+                <div class="col-sm-12 col-md-3">
+                    <h1>@item.Name</h1>
+                    <p>@item.Description</p>
+                </div>
+
+                @foreach (var variant in item.Variants)
+                {
+                    <div class="col-sm-12 col-md-3">
+                        <figure>
+                            <img src="@variant.ImagePath" alt="@variant.ImageAlt" />
+                            <h2 class="text-uppercase text-center">@variant.Name</h2>
+                        </figure>
+                    </div>
+                }
+            </div>
+        }
+    }
+</div>

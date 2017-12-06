@@ -1,0 +1,57 @@
+﻿@model FreeezeWebApp.Models.Database.Entities.DBBlogArticle
+@{ 
+//DateTime display format: MMMM dd, yyyy
+}
+
+<div class="container pb-3">
+    <div class="row">
+        <div class="col-12 col-lg-8">
+            @{
+                foreach (var item in this.ViewBag.Articles)
+                {
+                    <div class="row blog-article">
+                        <div class="col-sm-12 col-md-12 col-lg-4 text-center">
+                            <figure>
+                                <!-- <img src="~/Content/images/new-chills.png" alt="Blog image" /> -->
+                                <img src="@item.ImagePath" alt="@item.ImageAlt" />
+                        </figure>
+                    </div>
+
+                    <div class="col-sm-12 col-md-12 col-lg-8 blog-content">
+                            <div class="blog-header">
+                                <h1>@item.Name</h1>
+                                <span>On @item.UTCAddedOn</span>
+                            </div>
+                            <p>@item.Teaser</p>
+                            <a href="#" class="btn btn-primary text-uppercase" role="button" aria-pressed="true">Read more</a>
+                        </div>
+                    </div>
+                }
+            }
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a href="#" class="btn btn-primary text-uppercase" role="button" aria-pressed="true">Load more</a>
+                </div>
+            </div>
+        </div>
+        <aside id="page-aside" class="col-12 col-lg-4 text-center">
+            <h1>Recent Posts</h1>
+            @if (this.ViewBag.LastArticle != null)
+            {
+                <div>
+                    <figure>
+                        <img src="@this.ViewBag.LastArticle.ImagePath" alt="@this.ViewBag.LastArticle.ImageAlt" />
+                        <figcaption>
+                            <h2>@this.ViewBag.LastArticle.Name</h2>
+                            <span class="blog-timestamp">On @this.ViewBag.LastArticle.UTCAddedOn</span>
+                        </figcaption>
+                    </figure>
+
+                    <p>@this.ViewBag.LastArticle.Teaser</p>
+                    <a href="#" class="btn btn-primary text-uppercase" role="button" aria-pressed="true">Read more</a>
+                </div>
+            }
+        </aside>
+    </div>
+</div>

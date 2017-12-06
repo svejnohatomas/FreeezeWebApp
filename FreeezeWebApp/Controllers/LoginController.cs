@@ -15,11 +15,11 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (this.Session["authorized"] is DBLogin sessionLogin && sessionLogin.LogoutTime >= DateTime.Now)
+            if (this.Session["authorized"] is DBLogin sessionLogin && sessionLogin.UTCLogoutTime >= DateTime.Now)
             {
                 DBLoginRepository loginRepository = new DBLoginRepository(this.DatabaseContext);
                 DBLogin login = loginRepository.Find((this.Session["authorized"] as DBLogin).ID);
-                login.LogoutTime = DateTime.Now.AddMinutes(20);
+                login.UTCLogoutTime = DateTime.Now.AddMinutes(20);
                 loginRepository.Update(login, true);
                 this.Session["authorized"] = login;
                 return RedirectToAction("Index", "Administrator");
@@ -59,7 +59,7 @@ namespace FreeezeWebApp.Controllers
             {
                 DBLoginRepository loginRepository = new DBLoginRepository(this.DatabaseContext);
                 DBLogin login = loginRepository.Find((this.Session["authorized"] as DBLogin).ID);
-                login.LogoutTime = DateTime.Now;
+                login.UTCLogoutTime = DateTime.Now;
                 loginRepository.Update(login, true);
                 this.Session["authorized"] = null;
             }

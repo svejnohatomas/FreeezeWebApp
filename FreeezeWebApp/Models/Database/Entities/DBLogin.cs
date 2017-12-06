@@ -16,13 +16,13 @@ namespace FreeezeWebApp.Models.Database.Entities
         [DisplayName("Editor ID")]
         public int IDEditor { get; set; }
 
-        [Column("LOGIN_TIME"), Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("LOGIN_TIME_UTC"), Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("Login time")]
-        public DateTime LoginTime { get; set; }
+        public DateTime UTCLoginTime { get; set; }
 
-        [Column("LOGOUT_TIME"), Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [Column("LOGOUT_TIME_UTC"), Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [DisplayName("Logout time")]
-        public DateTime LogoutTime { get; set; }
+        public DateTime UTCLogoutTime { get; set; }
 
         [Column("USER_AGENT"), Required]
         [DisplayName("User agent")]
@@ -31,5 +31,8 @@ namespace FreeezeWebApp.Models.Database.Entities
         [Column("USER_IP"), Required]
         [DisplayName("IP address")]
         public string UserIP { get; set; }
+
+        [ForeignKey("IDEditor")]
+        public virtual DBEditor Editor { get; set; }
     }
 }

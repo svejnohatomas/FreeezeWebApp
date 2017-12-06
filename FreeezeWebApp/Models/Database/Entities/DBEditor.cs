@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -36,8 +37,11 @@ namespace FreeezeWebApp.Models.Database.Entities
         [DisplayName("Password salt")]
         public string PasswordSalt { get; set; }
 
-        [Column("REGISTERED_ON"), Required]
+        [Column("REGISTERED_ON_UTC"), Required]
         [DisplayName("Registered on")]
-        public DateTime RegisteredOn { get; set; }
+        public DateTime UTCRegisteredOn { get; set; }
+
+        public virtual ICollection<DBBlogArticle> Articles { get; set; }
+        public virtual ICollection<DBLogin> Logins { get; set; }
     }
 }
