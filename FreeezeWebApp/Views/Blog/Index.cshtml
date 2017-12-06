@@ -23,7 +23,7 @@
                                 <span>On @item.UTCAddedOn</span>
                             </div>
                             <p>@item.Teaser</p>
-                            <a href="#" class="btn btn-primary text-uppercase" role="button" aria-pressed="true">Read more</a>
+                            <a href="@Url.Action("Article", "Blog", new { id = item.ID })" class="btn btn-primary text-uppercase" role="button" aria-pressed="true">Read more</a>
                         </div>
                     </div>
                 }
@@ -49,7 +49,7 @@
                     </figure>
 
                     <p>@this.ViewBag.LastArticle.Teaser</p>
-                    <a href="#" class="btn btn-primary text-uppercase" role="button" aria-pressed="true">Read more</a>
+                    <a href="@Url.Action("Article", "Blog", new { id = this.ViewBag.LastArticle.ID })" class="btn btn-primary text-uppercase" role="button" aria-pressed="true">Read more</a>
                 </div>
             }
         </aside>

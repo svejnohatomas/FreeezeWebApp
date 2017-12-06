@@ -7,14 +7,28 @@ namespace FreeezeWebApp.Controllers
 {
     public class BlogController : Controller
     {
-        public DatabaseContext DatabaseContext { get; set; } = new DatabaseContext();
+        public BlogController()
+        {
+            this.DatabaseContext = new DatabaseContext();
+            this.BlogArticleRepository = new DBBlogArticleRepository(this.DatabaseContext);
+        }
+        public DatabaseContext DatabaseContext { get; set; }
+        public DBBlogArticleRepository BlogArticleRepository { get; set; }
+
         // GET: Blog
         [HttpGet]
         public ActionResult Index()
         {
-            DBBlogArticleRepository repository = new DBBlogArticleRepository(this.DatabaseContext);
-            this.ViewBag.Articles = repository.FindAll().OrderByDescending(x => x.UTCAddedOn).Skip(1);
-            this.ViewBag.LastArticle = repository.FindLast();
+            this.ViewBag.Articles = this.BlogArticleRepository.FindAll().OrderByDescending(x => x.UTCAddedOn).ThenByDescending(x => x.ID).Skip(1);
+            this.ViewBag.LastArticle = this.BlogArticleRepository.FindLast();
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Article(int id)
+        {
+            this.ViewBag.Article = this.BlogArticleRepository.Find(id);
+            this.ViewBag.LastArticle = this.BlogArticleRepository.FindLast();
             return View();
         }
     }

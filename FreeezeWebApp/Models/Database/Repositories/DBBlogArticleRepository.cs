@@ -31,7 +31,7 @@ namespace FreeezeWebApp.Models.Database.Repositories
         }
         internal virtual DBBlogArticle FindLast()
         {
-            return this._Context.Articles.OrderByDescending(x => x.UTCAddedOn).FirstOrDefault();
+            return this._Context.Articles.OrderByDescending(x => x.ID).FirstOrDefault();
         }
 
         internal override void Remove(DBBlogArticle item, bool saveChanges)

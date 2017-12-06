@@ -1,0 +1,36 @@
+﻿@model FreeezeWebApp.Models.Database.Entities.DBBlogArticle
+
+<div class="container pb-3">
+    <div class="row">
+        <article class="col-12 col-lg-8">
+            <div class="blog-header">
+                <h1>@this.ViewBag.Article.Name</h1>
+                <span>On @this.ViewBag.Article.UTCAddedOn</span>
+            </div>
+            <p>@this.ViewBag.Article.Content</p>
+            <div class="row">
+                <div class="col-12 text-center pt-3">
+                    <a href="@Url.Action("Index")" class="btn btn-primary text-uppercase" role="button" aria-pressed="true">Back to blog</a>
+                </div>
+            </div>
+        </article>
+        <aside id="page-aside" class="col-12 col-lg-4 text-center">
+            <h1>Recent Posts</h1>
+            @if (this.ViewBag.LastArticle != null)
+            {
+                <div>
+                    <figure>
+                        <img src="@this.ViewBag.LastArticle.ImagePath" alt="@this.ViewBag.LastArticle.ImageAlt" />
+                        <figcaption>
+                            <h2>@this.ViewBag.LastArticle.Name</h2>
+                            <span class="blog-timestamp">On @this.ViewBag.LastArticle.UTCAddedOn</span>
+                        </figcaption>
+                    </figure>
+
+                    <p>@this.ViewBag.LastArticle.Teaser</p>
+                    <a href="@Url.Action("Article", "Blog", new { id = this.ViewBag.LastArticle.ID })" class="btn btn-primary text-uppercase" role="button" aria-pressed="true">Read more</a>
+                </div>
+            }
+        </aside>
+    </div>
+</div>
