@@ -10,18 +10,15 @@ namespace FreeezeWebApp.Controllers
 {
     public class LoginController : Controller
     {
-        public DatabaseContext DatabaseContext { get; set; } = new DatabaseContext();
+        internal DatabaseContext DatabaseContext { get; set; } = new DatabaseContext();
+        internal Authorizer Authorizer { get; set; } = new Authorizer();
         // GET: Login
         [HttpGet]
         public ActionResult Index()
         {
-            if (this.Session["authorized"] is DBLogin sessionLogin && sessionLogin.UTCLogoutTime >= DateTime.Now)
+            if (this.Authorizer.IsLogedIn(this.Session))
             {
-                DBLoginRepository loginRepository = new DBLoginRepository(this.DatabaseContext);
-                DBLogin login = loginRepository.Find((this.Session["authorized"] as DBLogin).ID);
-                login.UTCLogoutTime = DateTime.Now.AddMinutes(20);
-                loginRepository.Update(login, true);
-                this.Session["authorized"] = login;
+                this.Authorizer.ReauthorizeLogin(this.Session);
                 return RedirectToAction("Index", "Administrator");
             }
             return View();
@@ -59,7 +56,7 @@ namespace FreeezeWebApp.Controllers
             {
                 DBLoginRepository loginRepository = new DBLoginRepository(this.DatabaseContext);
                 DBLogin login = loginRepository.Find((this.Session["authorized"] as DBLogin).ID);
-                login.UTCLogoutTime = DateTime.Now;
+                login.UTCLogoutTime = DateTime.UtcNow;
                 loginRepository.Update(login, true);
                 this.Session["authorized"] = null;
             }

@@ -1,0 +1,37 @@
+﻿@model FreeezeWebApp.Models.Database.Entities.DBBlogArticle
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Added on</th>
+                <th>Editor</th>
+                <th>Teaser</th>
+                <th>Content</th>
+                <th>Image path</th>
+                <th>Image alt</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Articles)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Name</td>
+                    <td>@item.UTCAddedOn</td>
+                    <td>@item.Editor.ToString()</td>
+                    <td>@item.Teaser.Substring(0, (item.Teaser.Length < 100) ? item.Teaser.Length : 100)</td>
+                    <td>@item.Content.Substring(0, (item.Content.Length < 100) ? item.Content.Length : 100))</td>
+                    <td>@item.ImagePath</td>
+                    <td>@item.ImageAlt</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

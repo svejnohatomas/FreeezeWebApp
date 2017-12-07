@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdministrator.cshtml";
+ }
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>First name</th>
+                <th>Middle name</th>
+                <th>Last name</th>
+                <th>Username</th>
+                <th>Registered on</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Profiles)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.FirstName</td>
+                    <td>@item.MiddleName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Username</td>
+                    <td>@item.UTCRegisteredOn</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

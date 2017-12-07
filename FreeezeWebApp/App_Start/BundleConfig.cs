@@ -31,6 +31,9 @@ namespace FreeezeWebApp
             bundles.Add(new StyleBundle("~/Content/login").Include(
                       "~/Content/login.css"));
 
+            bundles.Add(new StyleBundle("~/Content/admin").Include(
+                      "~/Content/Administrator.css"));
+
             bundles.Add(new StyleBundle("~/bundles/popper").Include(
                 "~/Scripts/umd/popper.min.js"));
         }

@@ -1,0 +1,33 @@
+﻿@model FreeezeWebApp.Models.Database.Entities.DBContactFormResponse
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdministrator.cshtml";
+}
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Added on</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Responses)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Name</td>
+                    <td>@item.Email</td>
+                    <td>@item.Subject</td>
+                    <td>@item.Message</td>
+                    <td>@item.UTCAddedOn</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

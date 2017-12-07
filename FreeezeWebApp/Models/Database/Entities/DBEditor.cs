@@ -43,5 +43,10 @@ namespace FreeezeWebApp.Models.Database.Entities
 
         public virtual ICollection<DBBlogArticle> Articles { get; set; }
         public virtual ICollection<DBLogin> Logins { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} {1}", this.FirstName, this.LastName);
+        }
     }
 }
