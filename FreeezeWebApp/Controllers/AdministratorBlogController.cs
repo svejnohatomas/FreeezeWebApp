@@ -20,7 +20,7 @@ namespace FreeezeWebApp.Controllers
             if (this.Authorizer.IsLogedIn(this.Session))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
-                this.ViewBag.Header = "Blog";
+                this.ViewBag.Header = "Blog articles";
                 this.ViewBag.Articles = new DBBlogArticleRepository(this.DatabaseContext).FindAll().OrderByDescending(x => x.UTCAddedOn).ThenByDescending(x => x.ID);
                 return View();
             }

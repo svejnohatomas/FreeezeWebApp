@@ -34,7 +34,7 @@ namespace FreeezeWebApp.Controllers
 
                 DBEditor editor = editorRepository.Find(login.Username);
 
-                if (editor != null || login.Username == editor.Username || PasswordHasher.Hash(login.Password, editor.PasswordSalt) == editor.PasswordHash)
+                if (editor != null && login.Username == editor.Username && PasswordHasher.Hash(login.Password, editor.PasswordSalt) == editor.PasswordHash)
                 {
                     DBLogin dBLogin = new DBLogin() { IDEditor = editor.ID, UserAgent = Request.UserAgent, UserIP = IPObtainer.GetIP() };
                     loginRepository.Add(dBLogin, true);
