@@ -19,17 +19,15 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            this.ViewBag.Articles = this.BlogArticleRepository.FindAll().OrderByDescending(x => x.UTCAddedOn).ThenByDescending(x => x.ID).Skip(1);
             this.ViewBag.LastArticle = this.BlogArticleRepository.FindLast();
-            return View();
+            return View(this.BlogArticleRepository.FindAll().OrderByDescending(x => x.UTCAddedOn).ThenByDescending(x => x.ID).Skip(1));
         }
 
         [HttpGet]
         public ActionResult Article(int id)
         {
-            this.ViewBag.Article = this.BlogArticleRepository.Find(id);
             this.ViewBag.LastArticle = this.BlogArticleRepository.FindLast();
-            return View();
+            return View(this.BlogArticleRepository.Find(id));
         }
     }
 }

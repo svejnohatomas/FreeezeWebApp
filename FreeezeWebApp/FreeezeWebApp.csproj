@@ -52,10 +52,12 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
@@ -152,14 +154,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdministratorBlogController.cs" />
-    <Compile Include="Controllers\AdministratorContactController.cs" />
-    <Compile Include="Controllers\AdministratorController.cs" />
-    <Compile Include="Controllers\AdministratorProductController.cs" />
+    <Compile Include="Controllers\BlogAdminController.cs" />
+    <Compile Include="Controllers\ContactAdminController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ProductsAdminController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ProductVariantAdminController.cs" />
+    <Compile Include="Controllers\UsersAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -180,7 +184,7 @@
     <Compile Include="Models\Database\Repositories\DBEditorRepository.cs" />
     <Compile Include="Models\Database\Repositories\DBLoginRepository.cs" />
     <Compile Include="Models\Database\Repositories\DBProductRepository.cs" />
-    <Compile Include="Models\Database\Repositories\DBoductVariantRepository.cs" />
+    <Compile Include="Models\Database\Repositories\DBProductVariantRepository.cs" />
     <Compile Include="Models\Database\Repositories\DBRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -299,19 +303,26 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_LayoutEmpty.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Administrator\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\Article.cshtml" />
     <Content Include="Views\Shared\_LayoutAdministrator.cshtml" />
-    <Content Include="Views\Administrator\Profiles.cshtml" />
-    <Content Include="Views\Administrator\Logins.cshtml" />
-    <Content Include="Views\AdministratorBlog\Index.cshtml" />
-    <Content Include="Views\AdministratorContact\Index.cshtml" />
-    <Content Include="Views\AdministratorProduct\Index.cshtml" />
+    <Content Include="Views\Admin\Logins.cshtml" />
+    <Content Include="Views\BlogAdmin\Index.cshtml" />
+    <Content Include="Views\ContactAdmin\Index.cshtml" />
+    <Content Include="Views\ProductsAdmin\Index.cshtml" />
+    <Content Include="Views\ProductsAdmin\Edit.cshtml" />
+    <Content Include="Views\ProductsAdmin\Create.cshtml" />
+    <Content Include="Views\BlogAdmin\Create.cshtml" />
+    <Content Include="Views\BlogAdmin\Edit.cshtml" />
+    <Content Include="Views\ContactAdmin\Detail.cshtml" />
+    <Content Include="Views\ProductVariantAdmin\Edit.cshtml" />
+    <Content Include="Views\ProductVariantAdmin\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\UsersAdmin\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

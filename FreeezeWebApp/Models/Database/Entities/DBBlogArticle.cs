@@ -16,7 +16,7 @@ namespace FreeezeWebApp.Models.Database.Entities
         [DisplayName("Name")]
         public string Name { get; set; }
 
-        [Column("ARTICLE_ADDED_ON_UTC"), DatabaseGenerated(DatabaseGeneratedOption.Identity), Required]
+        [Column("ARTICLE_ADDED_ON_UTC"), DatabaseGenerated(DatabaseGeneratedOption.Computed), Required]
         [DisplayName("Added on (UTC)")]
         public DateTime UTCAddedOn { get; set; }
 

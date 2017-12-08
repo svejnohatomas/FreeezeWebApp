@@ -25,13 +25,13 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "Administrator")">Home</a>
+                        <a class="nav-link" href="@Url.Action("Index", "Admin")">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Profiles", "Administrator")">Profiles</a>
+                        <a class="nav-link" href="@Url.Action("Index", "UsersAdmin")">Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Logins", "Administrator")">Logins</a>
+                        <a class="nav-link" href="@Url.Action("Logins", "Admin")">Logins</a>
                     </li>
                 </ul>
                 <form class="form-inline mt-2 mt-md-0">
@@ -48,17 +48,13 @@
             <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
                 <ul class="nav nav-pills flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "AdministratorProduct")">Products</a>
+                        <a class="nav-link" href="@Url.Action("Index", "ProductsAdmin")">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "AdministratorBlog")">Blog</a>
+                        <a class="nav-link" href="@Url.Action("Index", "BlogAdmin")">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "AdministratorContact")">Contact</a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Variants</a>
+                        <a class="nav-link" href="@Url.Action("Index", "ContactAdmin")">Contact</a>
                     </li>
                 </ul>
             </nav>

@@ -1,8 +1,8 @@
-﻿@model FreeezeWebApp.Models.Database.Entities.DBProduct
+﻿@model IEnumerable<FreeezeWebApp.Models.Database.Entities.DBProduct>
 
 <div class="container pb-3">
     @{
-        foreach (var item in this.ViewBag.Products)
+        foreach (var item in Model)
         {
             <div class="row">
                 <div class="col-sm-12 col-md-3">

@@ -2,76 +2,82 @@
 using FreeezeWebApp.Models.Database;
 using FreeezeWebApp.Models.Database.Entities;
 using FreeezeWebApp.Models.Database.Repositories;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace FreeezeWebApp.Controllers
 {
-    public class AdministratorController : Controller
+    public class ProductsAdminController : Controller
     {
         internal DatabaseContext DatabaseContext { get; set; } = new DatabaseContext();
         internal Authorizer Authorizer { get; set; } = new Authorizer();
 
-        // GET: Administrator
+        [HttpGet]
         public ActionResult Index()
         {
             if (this.Authorizer.IsLogedIn(this.Session))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
-                return View();
+                this.ViewBag.Header = "Products";
+                return View(new DBProductRepository(this.DatabaseContext).FindAll().OrderBy(x => x.Name));
             }
             return RedirectToAction("Index", "Login");
         }
 
         [HttpGet]
-        public ActionResult Profiles()
+        public ActionResult Edit(int id)
         {
             if (this.Authorizer.IsLogedIn(this.Session))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
-                this.ViewBag.Header = "Profiles";
-                this.ViewBag.Profiles = new DBEditorRepository(this.DatabaseContext).FindAll();
-                return View();
+                DBProduct product = new DBProductRepository(this.DatabaseContext).Find(id);
+                this.ViewBag.Header = "Editing article " + product.Name;
+                return View(product);
             }
             return RedirectToAction("Index", "Login");
         }
-
-        [HttpGet]
-        public ActionResult Logins()
+        [HttpPost]
+        public ActionResult Edit(DBProduct product)
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session) && this.ModelState.IsValid)
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
-                this.ViewBag.Header = "Logins";
-                this.ViewBag.Logins = new DBLoginRepository(this.DatabaseContext).FindAll().OrderByDescending(x => x.UTCLoginTime).ThenByDescending(x => x.UTCLogoutTime).ThenByDescending(x => x.ID);
-                return View();
+                new DBProductRepository(this.DatabaseContext).Update(product, true);
+                return RedirectToAction("Index");
             }
             return RedirectToAction("Index", "Login");
         }
 
         [HttpGet]
-        public ActionResult Products()
+        public ActionResult Create()
         {
             if (this.Authorizer.IsLogedIn(this.Session))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 this.ViewBag.Header = "Products";
+                this.ViewBag.Products = new DBProductRepository(this.DatabaseContext).FindAll().OrderBy(x => x.Name);
                 return View();
             }
             return RedirectToAction("Index", "Login");
         }
 
         [HttpGet]
-        public ActionResult Contact()
+        public ActionResult Delete(int id)
         {
             if (this.Authorizer.IsLogedIn(this.Session))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
-                this.ViewBag.Header = "Contact";
-                return View();
+                DBProductRepository repository = new DBProductRepository(this.DatabaseContext);
+                DBProduct product = repository.Find(id);
+
+                DBProductVariantRepository variantRepository = new DBProductVariantRepository(this.DatabaseContext);
+                while (product.Variants.Count > 0)
+                {
+                    variantRepository.Remove(product.Variants.ElementAt(0), false);
+                }
+
+                repository.Remove(product, true);
+                return RedirectToAction("Index");
             }
             return RedirectToAction("Index", "Login");
         }

@@ -1,13 +1,10 @@
-﻿@model FreeezeWebApp.Models.Database.Entities.DBBlogArticle
-@{ 
-//DateTime display format: MMMM dd, yyyy
-}
+﻿@model IEnumerable<FreeezeWebApp.Models.Database.Entities.DBBlogArticle>
 
 <div class="container pb-3">
     <div class="row">
         <div class="col-12 col-lg-8">
             @{
-                foreach (var item in this.ViewBag.Articles)
+                foreach (var item in Model)
                 {
                     <div class="row blog-article">
                         <div class="col-sm-12 col-md-12 col-lg-4 text-center">

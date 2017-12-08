@@ -1,4 +1,4 @@
-﻿@model FreeezeWebApp.Models.Database.Entities.DBBlogArticle
+﻿@model IEnumerable<FreeezeWebApp.Models.Database.Entities.DBBlogArticle>
 
 @{
     Layout = "~/Views/Shared/_LayoutAdministrator.cshtml";
@@ -8,7 +8,6 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>#</th>
                 <th>Name</th>
                 <th>Added on</th>
                 <th>Editor</th>
@@ -16,13 +15,14 @@
                 <th>Content</th>
                 <th>Image path</th>
                 <th>Image alt</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in ViewBag.Articles)
+            @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.ID</td>
                     <td>@item.Name</td>
                     <td>@item.UTCAddedOn</td>
                     <td>@item.Editor.ToString()</td>
@@ -30,8 +30,13 @@
                     <td>@item.Content.Substring(0, (item.Content.Length < 100) ? item.Content.Length : 100)</td>
                     <td>@item.ImagePath</td>
                     <td>@item.ImageAlt</td>
+                    <td><a href="@Url.Action("Edit", new { item.ID })">Edit</a></td>
+                    <td><a href="@Url.Action("Delete", new { item.ID })">Delete</a></td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+<p>
+    @Html.ActionLink("Create new article", "Create")
+</p>

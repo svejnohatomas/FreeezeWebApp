@@ -16,7 +16,7 @@ namespace FreeezeWebApp.Models.Database.Entities
         [DisplayName("Editor ID")]
         public int IDEditor { get; set; }
 
-        [Column("LOGIN_TIME_UTC"), Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("LOGIN_TIME_UTC"), Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [DisplayName("Login time")]
         public DateTime UTCLoginTime { get; set; }
 

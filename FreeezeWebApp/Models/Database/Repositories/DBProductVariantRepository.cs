@@ -6,9 +6,9 @@ using System.Web;
 
 namespace FreeezeWebApp.Models.Database.Repositories
 {
-    public class DBoductVariantRepository : DBRepository<DBProductVariant>
+    public class DBProductVariantRepository : DBRepository<DBProductVariant>
     {
-        public DBoductVariantRepository(DatabaseContext databaseContext) : base(databaseContext)
+        public DBProductVariantRepository(DatabaseContext databaseContext) : base(databaseContext)
         {
         }
 

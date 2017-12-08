@@ -19,7 +19,7 @@ namespace FreeezeWebApp.Controllers
             if (this.Authorizer.IsLogedIn(this.Session))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
-                return RedirectToAction("Index", "Administrator");
+                return RedirectToAction("Index", "Admin");
             }
             return View();
         }
@@ -39,7 +39,7 @@ namespace FreeezeWebApp.Controllers
                     DBLogin dBLogin = new DBLogin() { IDEditor = editor.ID, UserAgent = Request.UserAgent, UserIP = IPObtainer.GetIP() };
                     loginRepository.Add(dBLogin, true);
                     this.Session["authorized"] = dBLogin;
-                    return RedirectToAction("Index", "Administrator");
+                    return RedirectToAction("Index", "Admin");
                 }
                 else
                 {

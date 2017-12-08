@@ -1,4 +1,4 @@
-﻿@model FreeezeWebApp.Models.Database.Entities.DBLogin
+﻿@model IEnumerable<FreeezeWebApp.Models.Database.Entities.DBLogin>
 
 @{
     Layout = "~/Views/Shared/_LayoutAdministrator.cshtml";
@@ -8,22 +8,24 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>#</th>
+                <th>User</th>
                 <th>Login time (UTC)</th>
                 <th>Logout time (UTC)</th>
                 <th>User agent</th>
                 <th>IP address</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in ViewBag.Logins)
+            @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.ID</td>
+                    <td>@item.Editor.ToString()</td>
                     <td>@item.UTCLoginTime</td>
                     <td>@item.UTCLogoutTime</td>
                     <td>@item.UserAgent</td>
                     <td>@item.UserIP</td>
+                    <td><a href="@Url.Action("DeleteLogin", new { item.ID })">Delete</a></td>
                 </tr>
             }
         </tbody>
