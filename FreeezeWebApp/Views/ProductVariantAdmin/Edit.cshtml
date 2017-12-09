@@ -54,7 +54,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Edit", "ProductsAdmin", new { id=Model.IDProduct })">Back to Product</a>
 </div>
 
 @section Scripts {

@@ -16,11 +16,11 @@ namespace FreeezeWebApp.Models.Database.Entities
         [DisplayName("Editor ID")]
         public int IDEditor { get; set; }
 
-        [Column("LOGIN_TIME_UTC"), Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [Column("LOGIN_TIME_UTC"), Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DisplayName("Login time")]
         public DateTime UTCLoginTime { get; set; }
 
-        [Column("LOGOUT_TIME_UTC"), Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [Column("LOGOUT_TIME_UTC"), Required]
         [DisplayName("Logout time")]
         public DateTime UTCLogoutTime { get; set; }
 

@@ -36,7 +36,7 @@ namespace FreeezeWebApp.Controllers
 
                 if (editor != null && login.Username == editor.Username && PasswordHasher.Hash(login.Password, editor.PasswordSalt) == editor.PasswordHash)
                 {
-                    DBLogin dBLogin = new DBLogin() { IDEditor = editor.ID, UserAgent = Request.UserAgent, UserIP = IPObtainer.GetIP() };
+                    DBLogin dBLogin = new DBLogin() { IDEditor = editor.ID, UserAgent = Request.UserAgent, UserIP = IPObtainer.GetIP(), UTCLogoutTime = DateTime.UtcNow.AddMinutes(10) };
                     loginRepository.Add(dBLogin, true);
                     this.Session["authorized"] = dBLogin;
                     return RedirectToAction("Index", "Admin");

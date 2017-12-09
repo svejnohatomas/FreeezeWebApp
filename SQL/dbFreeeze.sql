@@ -44,7 +44,7 @@ CREATE TABLE fz_tbLogins(
 	ID int identity(1,1) not null primary key,
 	IDfz_tbEditors int not null,
 	LOGIN_TIME_UTC datetime not null default GETUTCDATE(),
-	LOGOUT_TIME_UTC datetime not null default DATEADD(mi, 20, GETUTCDATE()),
+	LOGOUT_TIME_UTC datetime not null,
 	USER_AGENT nvarchar(256) not null,
 	USER_IP nvarchar(15) not null
 );
