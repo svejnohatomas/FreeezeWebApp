@@ -23,7 +23,7 @@
                     <td>@item.Editor.ToString()</td>
                     <td>@item.UTCLoginTime</td>
                     <td>@item.UTCLogoutTime</td>
-                    <td>@item.UserAgent</td>
+                    <td>@item.UserAgent.Substring(0, (item.UserAgent.Length < 50) ? item.UserAgent.Length : 50)...</td>
                     <td>@item.UserIP</td>
                     <td><a href="@Url.Action("DeleteLogin", new { item.ID })">Delete</a></td>
                 </tr>

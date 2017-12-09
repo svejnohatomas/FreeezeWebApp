@@ -168,6 +168,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Application\Entities\AppLogin.cs" />
+    <Compile Include="Models\Application\Entities\AppUser.cs" />
     <Compile Include="Models\Application\Objects\Authorizer.cs" />
     <Compile Include="Models\Application\Objects\IPObtainer.cs" />
     <Compile Include="Models\Application\Objects\PasswordHasher.cs" />
@@ -319,10 +320,13 @@
     <Content Include="Views\ContactAdmin\Detail.cshtml" />
     <Content Include="Views\ProductVariantAdmin\Edit.cshtml" />
     <Content Include="Views\ProductVariantAdmin\Create.cshtml" />
+    <Content Include="Views\UsersAdmin\Index.cshtml" />
+    <Content Include="Views\UsersAdmin\Create.cshtml" />
+    <Content Include="Views\UsersAdmin\Details.cshtml" />
+    <Content Include="Views\UsersAdmin\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\UsersAdmin\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

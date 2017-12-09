@@ -41,5 +41,7 @@ namespace FreeezeWebApp.Models.Database
                 .WithMany(p => p.Variants)
                 .HasForeignKey(v => v.IDProduct);
         }
+
+        public System.Data.Entity.DbSet<FreeezeWebApp.Models.Application.Entities.AppUser> AppUsers { get; set; }
     }
 }

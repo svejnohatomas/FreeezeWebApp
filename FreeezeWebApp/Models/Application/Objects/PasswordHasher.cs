@@ -15,5 +15,17 @@ namespace FreeezeWebApp.Models.Application.Objects
 
             return BitConverter.ToString(new SHA512CryptoServiceProvider().ComputeHash(Encoding.Default.GetBytes(builder.ToString()))).Replace("-", String.Empty).ToUpper();
         }
+
+        public static string GenerateSalt(int length)
+        {
+            string chars = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&'()*+,-./0123456789:;<=>?@[]^_{}|";
+            StringBuilder sb = new StringBuilder(length);
+            Random r = new Random();
+            for (int i = 0; i < length; i++)
+            {
+                sb.Append(chars[r.Next(chars.Length)]);
+            }
+            return sb.ToString();
+        }
     }
 }
