@@ -40,22 +40,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PasswordHash)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PasswordSalt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PasswordSalt)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.UTCRegisteredOn)
         </dt>
 
@@ -63,6 +47,35 @@
             @Html.DisplayFor(model => model.UTCRegisteredOn)
         </dd>
 
+        <dt>
+            Logins
+        </dt>
+
+        <dd>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Login time (UTC)</th>
+                            <th>Logout time (UTC)</th>
+                            <th>User agent</th>
+                            <th>IP address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Logins)
+                        {
+                            <tr>
+                                <td>@item.UTCLoginTime</td>
+                                <td>@item.UTCLogoutTime</td>
+                                <td>@item.UserAgent.Substring(0, (item.UserAgent.Length < 50) ? item.UserAgent.Length : 50)...</td>
+                                <td>@item.UserIP</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </dd>
     </dl>
 </div>
 <p>

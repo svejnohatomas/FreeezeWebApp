@@ -74,11 +74,11 @@ namespace FreeezeWebApp.Controllers
         {
             if (this.Authorizer.IsLogedIn(this.Session))
             {
-                throw new NotImplementedException();
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 DBEditor editor = new DBEditorRepository(this.DatabaseContext).Find(id);
-                this.ViewBag.Header = "Edit user";
-                return View(editor);
+                AppUser appUser = new AppUser() { ID = editor.ID, FirstName = editor.FirstName, MiddleName = editor.MiddleName, LastName = editor.LastName, NewUsername = editor.Username, NewPassword = "******" };
+                this.ViewBag.Header = $"Edit user { editor.ToString() }";
+                return View(appUser);
             }
             return RedirectToAction("Index", "Login");
         }
@@ -87,8 +87,17 @@ namespace FreeezeWebApp.Controllers
         {
             if (this.Authorizer.IsLogedIn(this.Session) && this.ModelState.IsValid)
             {
-                throw new NotImplementedException();
-                new DBEditorRepository(this.DatabaseContext).Update(editor, true);
+                DBEditorRepository repository = new DBEditorRepository(this.DatabaseContext);
+                DBEditor editor = repository.Find(user.ID);
+                editor.FirstName = user.FirstName;
+                editor.MiddleName = user.MiddleName;
+                editor.LastName = user.LastName;
+                editor.Username = user.NewUsername;
+                if (editor.PasswordHash != PasswordHasher.Hash(user.NewPassword, editor.PasswordSalt))
+                {
+                    editor.Username = PasswordHasher.Hash(user.NewPassword, editor.PasswordSalt);
+                }
+                repository.Update(editor, true);
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index", "Login");
