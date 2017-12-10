@@ -10,9 +10,9 @@ namespace FreeezeWebApp.Models.Application.Objects
     {
         private DatabaseContext DatabaseContext { get; set; } = new DatabaseContext();
 
-        internal bool IsLogedIn(HttpSessionStateBase httpSession)
+        internal bool IsLogedIn(HttpSessionStateBase httpSession, HttpRequestBase httpRequest)
         {
-            return (httpSession["authorized"] is DBLogin sessionLogin && sessionLogin.UTCLogoutTime >= DateTime.UtcNow);
+            return (httpSession["authorized"] is DBLogin sessionLogin && sessionLogin.UserAgent == httpRequest.UserAgent && sessionLogin.UserIP == IPObtainer.GetIP() && sessionLogin.UTCLogoutTime >= DateTime.UtcNow);
         }
         internal void ReauthorizeLogin(HttpSessionStateBase httpSession)
         {

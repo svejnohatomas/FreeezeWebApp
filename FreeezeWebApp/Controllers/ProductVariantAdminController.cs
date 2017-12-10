@@ -18,7 +18,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Create(int id)
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 DBProduct product = new DBProductRepository(this.DatabaseContext).Find(id);
@@ -32,7 +32,7 @@ namespace FreeezeWebApp.Controllers
         public ActionResult Create(DBProductVariant productVariant)
         {
             ModelState.Remove("Product");
-            if (this.Authorizer.IsLogedIn(this.Session) && this.ModelState.IsValid)
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request) && this.ModelState.IsValid)
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 new DBProductVariantRepository(this.DatabaseContext).Add(productVariant, true);
@@ -44,7 +44,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 DBProductVariant productVariant = new DBProductVariantRepository(this.DatabaseContext).Find(id);
@@ -58,7 +58,7 @@ namespace FreeezeWebApp.Controllers
         public ActionResult Edit(DBProductVariant productVariant)
         {
             ModelState.Remove("Product");
-            if (this.Authorizer.IsLogedIn(this.Session) && this.ModelState.IsValid)
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request) && this.ModelState.IsValid)
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 new DBProductVariantRepository(this.DatabaseContext).Update(productVariant, true);

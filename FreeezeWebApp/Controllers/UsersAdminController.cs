@@ -16,7 +16,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 this.ViewBag.Header = "Profiles";
@@ -29,7 +29,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 this.ViewBag.Header = "Create user";
@@ -40,7 +40,7 @@ namespace FreeezeWebApp.Controllers
         [HttpPost]
         public ActionResult Create(AppUser user)
         {
-            if (this.Authorizer.IsLogedIn(this.Session) && this.ModelState.IsValid)
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request) && this.ModelState.IsValid)
             {
                 string salt = PasswordHasher.GenerateSalt(20);
                 string hash = PasswordHasher.Hash(user.NewPassword, salt);
@@ -57,7 +57,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 DBEditor editor = new DBEditorRepository(this.DatabaseContext).Find(id);
@@ -72,7 +72,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 DBEditor editor = new DBEditorRepository(this.DatabaseContext).Find(id);
@@ -85,7 +85,7 @@ namespace FreeezeWebApp.Controllers
         [HttpPost]
         public ActionResult Edit(AppUser user)
         {
-            if (this.Authorizer.IsLogedIn(this.Session) && this.ModelState.IsValid)
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request) && this.ModelState.IsValid)
             {
                 DBEditorRepository repository = new DBEditorRepository(this.DatabaseContext);
                 DBEditor editor = repository.Find(user.ID);
@@ -108,7 +108,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 DBEditorRepository repository = new DBEditorRepository(this.DatabaseContext);
                 if ((this.Session["authorized"] as DBLogin).IDEditor != id)

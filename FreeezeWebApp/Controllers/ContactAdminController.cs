@@ -14,7 +14,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 this.ViewBag.Header = "Contact form responses";
@@ -26,7 +26,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Detail(int id)
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 this.ViewBag.Header = $"Contact form response number { id }";
@@ -38,7 +38,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 DBContactFormResponseRepository repository = new DBContactFormResponseRepository(this.DatabaseContext);

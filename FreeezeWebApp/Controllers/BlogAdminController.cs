@@ -15,7 +15,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 this.ViewBag.Header = "Blog articles";
@@ -27,7 +27,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 DBBlogArticle article = new DBBlogArticleRepository(this.DatabaseContext).Find(id);
@@ -40,7 +40,7 @@ namespace FreeezeWebApp.Controllers
         [HttpPost]
         public ActionResult Edit(DBBlogArticle article)
         {
-            if (this.Authorizer.IsLogedIn(this.Session) && this.ModelState.IsValid)
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request) && this.ModelState.IsValid)
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 new DBBlogArticleRepository(this.DatabaseContext).Update(article, true);
@@ -52,7 +52,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 this.ViewBag.Header = "Create blog article";
@@ -66,7 +66,7 @@ namespace FreeezeWebApp.Controllers
         [HttpPost]
         public ActionResult Create(DBBlogArticle article)
         {
-            if (this.Authorizer.IsLogedIn(this.Session) && this.ModelState.IsValid)
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request) && this.ModelState.IsValid)
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 new DBBlogArticleRepository(this.DatabaseContext).Add(article, true);
@@ -78,7 +78,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 DBBlogArticleRepository repository = new DBBlogArticleRepository(this.DatabaseContext);

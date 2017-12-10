@@ -18,7 +18,7 @@ namespace FreeezeWebApp.Controllers
         // GET: Administrator
         public ActionResult Index()
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 return View();
@@ -30,7 +30,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Logins()
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 this.ViewBag.Header = "Logins";
@@ -41,7 +41,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult DeleteLogin(int id)
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 DBLoginRepository repository = new DBLoginRepository(this.DatabaseContext);

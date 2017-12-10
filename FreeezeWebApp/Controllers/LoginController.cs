@@ -16,7 +16,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 return RedirectToAction("Index", "Admin");

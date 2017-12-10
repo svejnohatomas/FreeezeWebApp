@@ -15,7 +15,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 this.ViewBag.Header = "Products";
@@ -27,7 +27,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 DBProduct product = new DBProductRepository(this.DatabaseContext).Find(id);
@@ -39,7 +39,7 @@ namespace FreeezeWebApp.Controllers
         [HttpPost]
         public ActionResult Edit(DBProduct product)
         {
-            if (this.Authorizer.IsLogedIn(this.Session) && this.ModelState.IsValid)
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request) && this.ModelState.IsValid)
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 new DBProductRepository(this.DatabaseContext).Update(product, true);
@@ -51,7 +51,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 this.ViewBag.Header = "Products";
@@ -64,7 +64,7 @@ namespace FreeezeWebApp.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            if (this.Authorizer.IsLogedIn(this.Session))
+            if (this.Authorizer.IsLogedIn(this.Session, this.Request))
             {
                 this.Authorizer.ReauthorizeLogin(this.Session);
                 DBProductRepository repository = new DBProductRepository(this.DatabaseContext);
